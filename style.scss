@@ -1,100 +1,232 @@
 //* Variables
 $primary-color: #ffc87a;
 $text-color: #1a2b5f;
+$text-gray: #c6cad7;
 
-//* Setting 
+//* Setting
 *,
 *::after,
 *::before {
-  box-sizing: border-box;
-  -webkit-box-sizing: border-box;
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
 }
 
 html {
-  font-size: 62.5%; //1rem = 10px
+	font-size: 62.5%; //1rem = 10px
 }
 
 img {
-  display: block;
-  max-width: 100%;
+	display: block;
+	max-width: 100%;
 }
 
 a {
-  text-decoration: none;
+	text-decoration: none;
 }
 
 body {
-  font-family: 'Poppins', sans-serif;
-  color: $text-color;
+	color: $text-color;
+	font-family: "Poppins", sans-serif;
+	font-weight: 400;
+	line-height: 1.4;
+
+	padding-bottom: 20rem;
 }
 
-@mixin flex($align: flex-start, $justify: flex-start, $wrap: nowrap) {
-  display: flex;
-  align-items: $align;
-  justify-content: $justify;
-  flex-wrap: $wrap;
+@mixin flex(
+	$align: flex-start,
+	$justify: flex-start,
+	$wrap: nowrap,
+	$dir: row
+) {
+	display: flex;
+	align-items: $align;
+	justify-content: $justify;
+	flex-wrap: $wrap;
+	flex-direction: $dir;
+}
+
+@mixin size($width, $height: $width) {
+	width: $width;
+	height: $height;
 }
 
 //* 1440, 1170
 .wrapper {
-  max-width: 144rem;
-  margin: 0 auto;
+	max-width: 144rem;
+	margin: 0 auto;
 }
 
 .container {
-  max-width: 117rem;
-  margin: 0 auto;
-  padding-right: 2rem;
-  padding-left: 2rem;
+	max-width: 117rem;
+	margin: 0 auto;
+	padding-right: 2rem;
+	padding-left: 2rem;
 }
 
-//* Header 
+// Common
+
+//* Button
+.btn {
+	display: inline-block;
+	padding: 1.5rem 3rem;
+	color: $text-color;
+	background-color: transparent;
+
+	font-size: 1.6rem;
+	text-align: center;
+	cursor: pointer;
+	outline: none;
+	border: 0;
+
+	&--border {
+		border: thin solid currentColor;
+	}
+
+	&--rounded {
+		border-radius: 5rem;
+	}
+
+	&--primary {
+		background-color: $primary-color;
+
+		&.has-shadow {
+			box-shadow: 0 1rem 3.5rem -0.5rem $primary-color;
+		}
+	}
+}
+
+// Blocks
+
+//* Header
 .header {
-  padding-top: 4rem;
+	padding-top: 4rem;
 
-  &__inner {
-    @include flex(center, space-between);  
-  }
+	&__inner {
+		@include flex(center, space-between);
+	}
 
-  &__menu {
-    &-list {
-      @include flex(center)
-    }
+	&__menu {
+		&-list {
+			@include flex(center);
+		}
 
-    &-item {
-      margin-left: 5rem;
+		&-item {
+			margin-left: 5rem;
 
-      &:last-child {
-        margin-left: 7rem;
-      }
-    }
+			& {
+				margin-left: 7rem;
+			}
+		}
 
-    &-link {
-      color: $text-color;
-      font-size: 1.6rem;
-      transition: color .25s linear, border .25s linear;
+		&-link {
+			color: $text-color;
+			font-size: 1.6rem;
+			transition: color 0.25s linear, border 0.25s linear;
 
-      &:hover {
-        color: $primary-color;
-      }
-    }
-  }
-
-  &__login {
-    display: inline-block;
-    padding: 1.5rem 2.5rem;
-
-    border: thin solid currentColor;
-    border-radius: 2.5rem
-  }
+			&:hover {
+				color: $primary-color;
+			}
+		}
+	}
 }
 
 .logo {
-  color: $text-color;
-  font-size: 2.5rem;
-  font-weight: 600;
+	color: $text-color;
+	font-size: 2.5rem;
+	font-weight: 600;
 
-  &__text {
-    color: $primary-color;
-  }
+	&__text {
+		color: $primary-color;
+	}
+}
+
+//* Banner
+.banner {
+	max-width: 80rem;
+	padding-top: 15rem;
+	padding-bottom: 15rem;
+	margin: 0 auto;
+	text-align: center;
+
+	&__heading {
+		margin-bottom: 3rem;
+		font-size: 6rem;
+		font-weight: 700;
+	}
+
+	&__desc {
+		margin-bottom: 4rem;
+		font-size: 1.8rem;
+		font-weight: 300;
+	}
+
+	&__buttons {
+		@include flex(stretch, center);
+
+		.btn {
+			margin: 0 1rem;
+		}
+	}
+}
+
+//* Category
+.category {
+	&__list {
+		@include flex(stretch, space-between, wrap);
+	}
+
+	&__item {
+		width: calc(25% - 2.5rem);
+		padding: 2.5rem;
+		@include flex(stretch, flex-start, nowrap, column);
+
+		background-color: white;
+    border-radius: 2rem;
+    
+    &:first-child {
+      box-shadow: 0 2rem 3.5rem -0.5rem rgba(255, 151, 195, .25);
+    }
+
+    &:nth-child(2) {
+      box-shadow: 0 2rem 3.5rem -0.5rem rgba(255, 112, 109, .25);
+    }
+
+    &:nth-child(3) {
+      box-shadow: 0 2rem 3.5rem -0.5rem rgba(133, 152, 255, .25);
+    }
+
+    &:last-child {
+      box-shadow: 0 2rem 3.5rem -0.5rem rgba(255, 200, 122, .25);
+    }
+	}
+
+	&__img {
+		@include size(100%, 23rem);
+		margin-bottom: 4rem;
+		object-fit: cover;
+    border-radius: inherit;
+	}
+
+	&__name,
+	&__details {
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+
+	&__name {
+		margin-bottom: 2.5rem;
+		font-size: 2.5rem;
+	}
+
+	&__details {
+		margin-top: auto;
+		color: $text-gray;
+		font-size: 1.4rem;
+
+		i {
+			margin-left: 1.5rem;
+		}
+	}
 }
