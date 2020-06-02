@@ -1,5 +1,8 @@
-//* Setting 
+//* Variables
+$primary-color: #ffc87a;
+$text-color: #1a2b5f;
 
+//* Setting 
 *,
 *::after,
 *::before {
@@ -16,7 +19,82 @@ img {
   max-width: 100%;
 }
 
-.box {
-  width: 10rem;
+a {
+  text-decoration: none;
 }
 
+body {
+  font-family: 'Poppins', sans-serif;
+  color: $text-color;
+}
+
+@mixin flex($align: flex-start, $justify: flex-start, $wrap: nowrap) {
+  display: flex;
+  align-items: $align;
+  justify-content: $justify;
+  flex-wrap: $wrap;
+}
+
+//* 1440, 1170
+.wrapper {
+  max-width: 144rem;
+  margin: 0 auto;
+}
+
+.container {
+  max-width: 117rem;
+  margin: 0 auto;
+  padding-right: 2rem;
+  padding-left: 2rem;
+}
+
+//* Header 
+.header {
+  padding-top: 4rem;
+
+  &__inner {
+    @include flex(center, space-between);  
+  }
+
+  &__menu {
+    &-list {
+      @include flex(center)
+    }
+
+    &-item {
+      margin-left: 5rem;
+
+      &:last-child {
+        margin-left: 7rem;
+      }
+    }
+
+    &-link {
+      color: $text-color;
+      font-size: 1.6rem;
+      transition: color .25s linear, border .25s linear;
+
+      &:hover {
+        color: $primary-color;
+      }
+    }
+  }
+
+  &__login {
+    display: inline-block;
+    padding: 1.5rem 2.5rem;
+
+    border: thin solid currentColor;
+    border-radius: 2.5rem
+  }
+}
+
+.logo {
+  color: $text-color;
+  font-size: 2.5rem;
+  font-weight: 600;
+
+  &__text {
+    color: $primary-color;
+  }
+}
