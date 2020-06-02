@@ -1,3 +1,21 @@
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}
 
+html {
+  font-size: 62.5%;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+.box {
+  width: 10rem;
+}
 
 /*# sourceMappingURL=style.css.map */
